@@ -1,3 +1,6 @@
+require './lib/fileio'
+require './lib/photograph'
+
 class Curator
   attr_reader :photographs, :artists
 
@@ -39,5 +42,9 @@ class Curator
   end
 
   def load_photographs(file_path)
+    all_photos_from_file = FileIO.load_photographs(file_path)
+    all_photos_from_file.each do |photo_hash|
+      add_photograph(Photograph.new(photo_hash))
+    end
   end
 end
