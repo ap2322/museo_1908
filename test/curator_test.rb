@@ -3,6 +3,7 @@ require 'minitest/pride'
 require './lib/curator'
 require './lib/photograph'
 require './lib/artist'
+require 'pry'
 
 class CuratorTest < Minitest::Test
   def setup
@@ -65,5 +66,14 @@ class CuratorTest < Minitest::Test
     @curator.add_artist(@artist_2)
 
     assert_equal [@artist_1, @artist_2], @curator.artists
+  end
+
+  def test_find_artist_by_id
+    artists
+    @curator.add_artist(@artist_1)
+    @curator.add_artist(@artist_2)
+
+    assert_equal @artist_1, @curator.find_artist_by_id("1")
+    assert_equal @artist_2, @curator.find_artist_by_id("2")
   end
 end
