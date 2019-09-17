@@ -163,5 +163,15 @@ class CuratorTest < Minitest::Test
 
     assert_equal 4, curator2.photographs.length
     assert_instance_of Photograph, curator2.photographs[0]
+    assert_equal "Rue Mouffetard, Paris (Boy with Bottles)", curator2.photographs[0].name
+  end
+
+  def test_load_artists
+    curator3 = Curator.new
+    curator3.load_artists('./data/artists.csv')
+
+    assert_equal 6, curator3.artists.length
+    assert_instance_of Artist, curator3.artists[0]
+    assert_equal "Henri Cartier-Bresson", curator3.artists[0].name
   end
 end
