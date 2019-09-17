@@ -12,17 +12,17 @@ class CuratorTest < Minitest::Test
 
   def photos
     @photo_1 = Photograph.new({
-                                 id: "1",
-                                 name: "Rue Mouffetard, Paris (Boy with Bottles)",
-                                 artist_id: "1",
-                                 year: "1954"
-                              })
+       id: "1",
+       name: "Rue Mouffetard, Paris (Boy with Bottles)",
+       artist_id: "1",
+       year: "1954"
+       })
     @photo_2 = Photograph.new({
-                                 id: "2",
-                                 name: "Moonrise, Hernandez",
-                                 artist_id: "2",
-                                 year: "1941"
-                              })
+       id: "2",
+       name: "Moonrise, Hernandez",
+       artist_id: "2",
+       year: "1941"
+       })
   end
 
   def artists
@@ -75,5 +75,14 @@ class CuratorTest < Minitest::Test
 
     assert_equal @artist_1, @curator.find_artist_by_id("1")
     assert_equal @artist_2, @curator.find_artist_by_id("2")
+  end
+
+  def test_find_photograph_by_id
+    photos
+    @curator.add_photograph(@photo_1)
+    @curator.add_photograph(@photo_2)
+
+    assert_equal @photo_2, @curator.find_photograph_by_id("2")
+    assert_equal @photo_1, @curator.find_photograph_by_id("1")
   end
 end
