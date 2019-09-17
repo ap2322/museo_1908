@@ -174,4 +174,12 @@ class CuratorTest < Minitest::Test
     assert_instance_of Artist, curator3.artists[0]
     assert_equal "Henri Cartier-Bresson", curator3.artists[0].name
   end
+
+  def test_photos_taken_between_years
+    curator2 = Curator.new
+    curator2.load_photographs('./data/photographs.csv')
+    photo_objs = curator2.photographs
+
+    assert_equal [photo_objs[0], photo_objs[3]], curator2.photographs_taken_between(1950..1965)
+  end
 end

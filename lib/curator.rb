@@ -55,4 +55,10 @@ class Curator
       add_artist(Artist.new(artist_hash))
     end
   end
+
+  def photographs_taken_between(years_range)
+    @photographs.find_all do |photo|
+      photo.year.to_i >= years_range.min && photo.year.to_i <= years_range.max
+    end
+  end
 end
