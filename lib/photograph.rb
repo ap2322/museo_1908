@@ -7,4 +7,8 @@ class Photograph
     @artist_id = attributes[:artist_id]
     @year = attributes[:year]
   end
+
+  def artist_age_when_taken(artist)
+    @year.to_i - artist.born.to_i
+  end
 end
