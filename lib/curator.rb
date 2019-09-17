@@ -61,4 +61,13 @@ class Curator
       photo.year.to_i >= years_range.min && photo.year.to_i <= years_range.max
     end
   end
+
+  def artists_photographs_by_age(artist)
+    photos = find_photographs_by_artist(artist)
+    output = {}
+    photos.each do |photo|
+      output[photo.artist_age_when_taken(artist)] = photo.name
+    end
+    output
+  end
 end

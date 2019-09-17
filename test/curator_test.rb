@@ -182,4 +182,17 @@ class CuratorTest < Minitest::Test
 
     assert_equal [photo_objs[0], photo_objs[3]], curator2.photographs_taken_between(1950..1965)
   end
+
+  def test_artists_photographs_by_age
+    curator3 = Curator.new
+    curator3.load_artists('./data/artists.csv')
+    curator3.load_photographs('./data/photographs.csv')
+    diane_arbus = curator3.find_artist_by_id("3")
+    # hash where the keys are the Artists age when they took a photograph,
+    # and the values are the names of the photographs
+    expected = {44=>"Identical Twins, Roselle, New Jersey",
+                39=>"Child with Toy Hand Grenade in Central Park"}
+    assert_equal expected, curator3.artists_photographs_by_age(diane_arbus)
+  end
+
 end
