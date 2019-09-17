@@ -37,4 +37,7 @@ class Curator
   def photographs_taken_by_artist_from(country)
     artists.find_all { |artist| artist.country == country }
   end
+
+  def load_photographs(file_path)
+  end
 end
